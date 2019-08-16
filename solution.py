@@ -1,19 +1,27 @@
+import sys
 class WordAnagram:
 
     def __init__(self):
         self.wordList = []
+        self.input = []
+        if len(sys.argv) > 1:
+            for char in sys.argv[1]:
+                self.input.append(char)
 
-    def solution(self, input):
+    def solution(self, chars):
+        if not self.input:
+            self.input = chars
+
         res = set()
         for word in self.wordList:
             letters = self.letterCounts(word)
             valid = 1
             for l in letters:
-                if l not in input:
+                if l not in self.input:
                     valid = 0
                     break
                 else:
-                    if input.count(l) != letters[l]:
+                    if self.input.count(l) != letters[l]:
                         valid = 0
                         break
 
@@ -41,5 +49,5 @@ class WordAnagram:
 if __name__ == '__main__':
     wordAnagram = WordAnagram()
     wordAnagram.readWords()
-    res = wordAnagram.solution(['k','w','a','m','m','e'])
+    res = wordAnagram.solution('kwamme')
     print(res)
