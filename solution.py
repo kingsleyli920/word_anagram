@@ -19,11 +19,9 @@ class WordAnagram:
             for l in letters:
                 if l not in self.input:
                     valid = 0
-                    break
                 else:
-                    if self.input.count(l) != letters[l]:
+                    if self.input.count(l) < letters[l]:
                         valid = 0
-                        break
 
             if valid == 1:
                 res.add(word)
